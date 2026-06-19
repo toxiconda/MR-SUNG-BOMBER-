@@ -1,10 +1,11 @@
-{
   "name": "MR SUNG BOMBER",
   "short_name": "MR SUNG",
+  "description": "MR SUNG BOMBER Official App",
   "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#000000",
-  "theme_color": "#000000",
+  "theme_color": "#6A00FF",
   "orientation": "portrait",
   "icons": [
     {
